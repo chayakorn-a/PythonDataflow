@@ -26,6 +26,9 @@ class ReadFile(beam.DoFn):
             thislist.append(file)
 
         for x in thislist:
+            print(x)
+
+        for x in thislist:
             with open(x) as fin:
                 for line in fin:
                     data = json.loads(line)
@@ -73,6 +76,7 @@ class DataflowOptions(PipelineOptions):
 
 
 def run(argv=None):
+    print("start")
     parser = argparse.ArgumentParser()
     known_args, pipeline_args = parser.parse_known_args(argv)
 
