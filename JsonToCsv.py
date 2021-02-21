@@ -1,6 +1,7 @@
 import argparse
 import json
 import logging
+import glob
 
 import apache_beam as beam
 import pandas as pd
@@ -19,7 +20,13 @@ class ReadFile(beam.DoFn):
 
     def process(self, something):
         clear_data = []
-        with open(self.input_path) as fin:
+        thislist = []
+
+        for file in glob.glob(self.input_path + '/**/*.json', recursive=True):
+            thislist.append(file)
+
+        for x in thislist:
+        with open(x) as fin:
             for line in fin:
                 data = json.loads(line)
                 product = data.get('product')
