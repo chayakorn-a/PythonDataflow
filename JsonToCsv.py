@@ -26,25 +26,25 @@ class ReadFile(beam.DoFn):
             thislist.append(file)
 
         for x in thislist:
-        with open(x) as fin:
-            for line in fin:
-                data = json.loads(line)
-                product = data.get('product')
+            with open(x) as fin:
+                for line in fin:
+                    data = json.loads(line)
+                    product = data.get('product')
 
-                if product and product.get('id'):
-                    product_id = str(product.get('id'))
-                    vendor = product.get('vendor')
-                    product_type = product.get('product_type')
-                    updated_at = product.get('updated_at')
-                    created_at = product.get('created_at')
-                    product_options = product.get('options')
+                    if product and product.get('id'):
+                        product_id = str(product.get('id'))
+                        vendor = product.get('vendor')
+                        product_type = product.get('product_type')
+                        updated_at = product.get('updated_at')
+                        created_at = product.get('created_at')
+                        product_options = product.get('options')
 
-                    option_ids = []
-                    if product_options:
-                        for option in product_options:
-                            option_ids.append(option.get('id'))
+                        option_ids = []
+                        if product_options:
+                            for option in product_options:
+                                option_ids.append(option.get('id'))
 
-                    clear_data.append([product_id, vendor, product_type, updated_at, created_at, option_ids])
+                        clear_data.append([product_id, vendor, product_type, updated_at, created_at, option_ids])
 
         yield clear_data
 
