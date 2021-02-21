@@ -22,7 +22,7 @@ class ReadFile(beam.DoFn):
         clear_data = []
         thislist = []
 
-        for file in glob.glob(self.input_path + '/**/*.json', recursive=True):
+        for file in glob.glob(self.input_path + '/*.json'):
             thislist.append(file)
 
         for x in thislist:
