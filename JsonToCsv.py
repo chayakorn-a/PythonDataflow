@@ -21,10 +21,10 @@ class ReadFile(beam.DoFn):
     def process(self, something):
         clear_data = []
         
-        blobs = self.client.list_blobs("chayakorn-private.appspot.com","input/")
+        blobs = self.client.list_blobs("chayakorn-private.appspot.com","input/","json")
 
         for blob in blobs:
-            with open("gs://chayakorn-private.appspot.com/"+blob.name) as fin:
+            with open("gs://chayakorn-private.appspot.com/"+blobs.prefixes) as fin:
                 for line in fin:
                     data = json.loads(line)
                     product = data.get('product')
