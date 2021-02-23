@@ -23,8 +23,8 @@ class ReadFile(beam.DoFn):
         
         blobs = self.client.list_blobs("chayakorn-private.appspot.com","input/","json")
 
-        for blob in blobs:
-            with open("gs://chayakorn-private.appspot.com/"+blobs.prefixes) as fin:
+        for prefix in blobs.prefixes:
+            with open("gs://chayakorn-private.appspot.com/"+prefix) as fin:
                 for line in fin:
                     data = json.loads(line)
                     product = data.get('product')
