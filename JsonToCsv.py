@@ -20,16 +20,7 @@ class ReadFile(beam.DoFn):
 
     def process(self, something):
         clear_data = []
-        thislist = []
-'''
-        for file in glob.glob(self.input_path + '/*.json'):
-            thislist.append(file)
-
-        for x in thislist:
-            print(x)
-
-        for x in thislist:
-            '''
+        
         blobs = storage_client.list_blobs("chayakorn-private.appspot.com","input/")
 
         for blob in blobs:
