@@ -21,7 +21,7 @@ class ReadFile(beam.DoFn):
     def process(self, something):
         clear_data = []
         
-        blobs = storage_client.list_blobs("chayakorn-private.appspot.com","input/")
+        blobs = self.client.list_blobs("chayakorn-private.appspot.com","input/")
 
         for blob in blobs:
             with open("gs://chayakorn-private.appspot.com/"+blob.name) as fin:
